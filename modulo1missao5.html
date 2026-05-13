@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fábrica de Gamificação - Módulo 1</title>
+<style>
+  :root { 
+    --pg: 0;
+    --color-background-primary: #ffffff;
+    --color-background-secondary: #fcfdff;
+    --color-text-primary: #333333;
+    --color-text-secondary: #666666;
+    --color-text-tertiary: #999999;
+    --color-text-title: #8B40FA;
+    --color-border-secondary: #8B40FA;
+    --color-border-tertiary: #11C5D9;
+    --border-radius-md: 4px;
+    --border-radius-lg: 8px;
+    --font-sans: Arial, sans-serif;}
+  
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: var(--font-sans, sans-serif); }
+
+  .ib-shell {
+    display: flex; min-height: 600px; font-size: 15px;
+    border: 0.5px solid var(--color-border-tertiary);
+    border-radius: var(--border-radius-lg);
+    overflow: hidden;
+  }
+  .ib-sidebar {
+    width: 220px; min-width: 220px;
+    background: var(--color-background-secondary);
+    border-right: 0.5px solid var(--color-border-tertiary);
+    display: flex; flex-direction: column;
+    padding: 1rem 0;
+  }
+  .ib-sidebar-header {
+    padding: 0 1rem 1rem;
+    border-bottom: 0.5px solid var(--color-border-tertiary);
+    margin-bottom: 0.5rem;
+  }
+  .ib-sidebar-header .module-label {
+    font-size: 10px; font-weight: 500; letter-spacing: 0.08em;
+    color: var(--color-text-tertiary); text-transform: uppercase; margin-bottom: 4px;
+  }
+  .ib-sidebar-header .module-title {
+    font-size: 13px; font-weight: 500; color: var(--color-text-primary); line-height: 1.4;
+  }
+  .progress-bar-wrap {
+    padding: 0.75rem 1rem 0;
+  }
+  .progress-bar-bg {
+    height: 4px; border-radius: 2px; background: var(--color-border-tertiary); overflow: hidden;
+  }
+  .progress-bar-fill {
+    height: 100%; border-radius: 2px; background: #805cbf;
+    transition: width 0.4s ease;
+  }
+  .progress-label { font-size: 11px; color: var(--color-text-tertiary); margin-top: 4px; }
+
+  .ib-nav { flex: 1; padding: 0.5rem 0; overflow-y: auto; }
+  .ib-nav-item {
+    display: flex; align-items: center; gap: 8px;
+    padding: 8px 1rem; cursor: pointer; font-size: 13px; line-height: 1.4;
+    color: var(--color-text-secondary);
+    border-left: 2px solid transparent;
+    transition: background 0.15s;
+  }
+  .ib-nav-item:hover { background: var(--color-background-primary); }
+  .ib-nav-item.active {
+    color: var(--color-text-primary); font-weight: 500;
+    border-left-color: #805cbf;
+    background: var(--color-background-primary);
+  }
+  .ib-nav-item.done { color: var(--color-text-secondary); }
+  .nav-icon {
+    width: 20px; height: 20px; border-radius: 50%; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 10px; font-weight: 500;
+    background: var(--color-border-tertiary); color: var(--color-text-tertiary);
+  }
+  .nav-icon.done-icon { background: #805cbf; color: white; }
+  .nav-icon.active-icon { background: #805cbf; color: white; }
+
+  .ib-content {
+    flex: 1; overflow-y: auto; padding: 2rem 2.5rem;
+    background: var(--color-background-primary);
+  }
+
+  .page { display: block; }
+  .page.visible { display: block; }
+
+  .page-tag {
+    font-size: 14px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--color-text-tertiary); margin-bottom: 8px;
+  }
+  .page-title {
+    font-size: 22px; font-weight: 500; color: var(--color-text-title);
+    line-height: 1.3; margin-bottom: 0.5rem;
+  }
+  
+  .page-subtitle {
+    font-size: 15px; color: var(--color-text-secondary); margin-bottom: 1.5rem; line-height: 1.6;
+  }
+  .page-continue {
+    font-size: 15px; color: var(--color-text-secondary); margin-bottom: 1.5rem; line-height: 1.6;
+  }
+  .divider {
+    height: 0.5px; background: var(--color-border-tertiary); margin: 1.5rem 0;
+  }
+
+  .status-pill {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: #f1edfa; color: #582bc2;
+    font-size: 12px; font-weight: 500; padding: 4px 10px;
+    border-radius: 20px; margin-bottom: 1.5rem;
+  }
+  .status-dot { width: 6px; height: 6px; border-radius: 50%; background: #7b34fe; }
+
+  .intro-card {
+    background: var(--color-background-secondary);
+    border: 0.5px solid var(--color-border-tertiary);
+    border-radius: var(--border-radius-lg);
+    padding: 1.5rem; margin-bottom: 1.5rem;
+    font-size: 15px; color: var(--color-text-primary); line-height: 1.7;
+  }
+  .highlight-box {
+    border-left: 3px solid #805cbf; padding: 0.75rem 1rem;
+    background: #f1edfa; border-radius: 0 var(--border-radius-md) var(--border-radius-md) 0;
+    color: #582bc2; font-size: 14px; margin: 1rem 0; line-height: 1.6;
+  }
+
+  .dialog-cards-container { display: flex; flex-direction: column; gap: 1rem; margin-bottom: 1.5rem; }
+  .dialog-card {
+    border: 0.5px solid var(--color-border-tertiary);
+    border-radius: var(--border-radius-lg);
+    overflow: hidden; cursor: pointer;
+    transition: border-color 0.2s;
+  }
+  .dialog-card:hover { border-color: var(--color-border-secondary); }
+  .dialog-card-front {
+    padding: 1rem 1.25rem;
+    display: flex; justify-content: space-between; align-items: center;
+    background: var(--color-background-primary);
+    font-size: 14px; font-weight: 500; color: var(--color-text-primary);
+  }
+  .dialog-card-back {
+    display: none; padding: 1rem 1.25rem;
+    background: var(--color-background-secondary);
+    border-top: 0.5px solid var(--color-border-tertiary);
+    font-size: 13px; color: var(--color-text-secondary); line-height: 1.6;
+  }
+  .dialog-card.flipped .dialog-card-back { display: block; }
+  .flip-hint { font-size: 11px; color: var(--color-text-tertiary); margin-top: 4px; }
+  .card-answer-tag {
+    font-size: 11px; padding: 2px 8px; border-radius: 20px; font-weight: 500;
+  }
+  .tag-no { background: #FCEBEB; color: #A32D2D; }
+  .tag-caution { background: #FAEEDA; color: #854F0B; }
+  .tag-target { background: #f1edfa; color: #0F6E56; }
+
+  .accordion-container { margin-bottom: 1.5rem; }
+  .accordion-item {
+    border: 0.5px solid var(--color-border-tertiary);
+    border-radius: var(--border-radius-md); margin-bottom: 8px; overflow: hidden;
+  }
+  .accordion-header {
+    padding: 1rem 1.25rem; cursor: pointer;
+    display: flex; justify-content: space-between; align-items: center;
+    background: var(--color-background-primary);
+    font-size: 14px; font-weight: 500; color: var(--color-text-primary);
+  }
+  .accordion-header:hover { background: var(--color-background-secondary); }
+  .accordion-body {
+    display: none; padding: 1rem 1.25rem;
+    background: var(--color-background-secondary);
+    border-top: 0.5px solid var(--color-border-tertiary);
+    font-size: 13px; color: var(--color-text-secondary); line-height: 1.7;
+  }
+  .accordion-item.open .accordion-body { display: block; }
+  .acc-arrow { font-size: 12px; transition: transform 0.2s; }
+  .accordion-item.open .acc-arrow { transform: rotate(180deg); }
+
+  .hotspot-wrapper {
+    position: relative; margin-bottom: 1.5rem;
+    border-radius: var(--border-radius-lg); overflow: hidden;
+    border: 0.5px solid var(--color-border-tertiary);
+  }
+  .hotspot-img {
+    display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px;
+    background: var(--color-border-tertiary);
+  }
+  .hotspot-cell {
+    background: var(--color-background-secondary);
+    padding: 1.5rem 1rem; text-align: center; cursor: pointer;
+    transition: background 0.2s;
+  }
+  .hotspot-cell:hover { background: var(--color-background-primary); }
+  .hotspot-cell.revealed { background: #f1edfa; }
+  .hotspot-icon { font-size: 28px; margin-bottom: 8px; }
+  .hotspot-label { font-size: 13px; font-weight: 500; color: var(--color-text-primary); }
+  .hotspot-desc {
+    display: none; font-size: 12px; color: #582bc2; margin-top: 6px; line-height: 1.5;
+  }
+  .hotspot-cell.revealed .hotspot-desc { display: block; }
+  .hotspot-instruction { font-size: 12px; color: var(--color-text-tertiary); margin-bottom: 8px; }
+
+  .drag-area { margin-bottom: 1.5rem; }
+  .drag-sentence {
+    background: var(--color-background-secondary);
+    border: 0.5px solid var(--color-border-tertiary);
+    border-radius: var(--border-radius-md); padding: 1.25rem;
+    font-size: 15px; line-height: 2.2; margin-bottom: 1rem; color: var(--color-text-primary);
+  }
+  .blank {
+    display: inline-block; min-width: 130px; border-bottom: 2px solid #805cbf;
+    padding: 2px 4px; margin: 0 4px; cursor: pointer; text-align: center;
+    font-size: 13px; color: var(--color-text-tertiary); vertical-align: middle;
+  }
+  .blank.filled { color: #582bc2; font-weight: 500; }
+  .word-bank {
+    display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 1rem;
+  }
+  .word-chip {
+    background: var(--color-background-primary);
+    border: 0.5px solid var(--color-border-secondary);
+    border-radius: 20px; padding: 5px 14px;
+    font-size: 13px; cursor: pointer; color: var(--color-text-primary);
+    transition: background 0.15s, opacity 0.2s;
+  }
+  .word-chip:hover { background: var(--color-background-secondary); }
+  .word-chip.used { opacity: 0.35; pointer-events: none; }
+  .word-chip.correct-used { background: #f1edfa; color: #582bc2; border-color: #5DCAA5; opacity: 0.6; }
+
+  .essay-area { margin-bottom: 1.5rem; }
+  .essay-question {
+    background: var(--color-background-secondary);
+    border: 0.5px solid var(--color-border-tertiary);
+    border-radius: var(--border-radius-md); padding: 1.25rem;
+    font-size: 14px; color: var(--color-text-primary); margin-bottom: 1rem; line-height: 1.7;
+  }
+  .essay-prompts { list-style: none; padding: 0; }
+  .essay-prompts li {
+    padding: 4px 0 4px 1rem;
+    border-left: 2px solid #805cbf;
+    margin-bottom: 6px; font-size: 13px; color: var(--color-text-secondary);
+  }
+  textarea {
+    width: 100%; min-height: 100px; padding: 0.75rem 1rem;
+    border: 0.5px solid var(--color-border-tertiary);
+    border-radius: var(--border-radius-md);
+    font-family: var(--font-sans); font-size: 13px; line-height: 1.6;
+    resize: vertical; background: var(--color-background-primary);
+    color: var(--color-text-primary);
+  }
+  textarea:focus { outline: none; border-color: #805cbf; }
+
+  .choice-set { margin-bottom: 1.5rem; }
+  .choice-question {
+    background: var(--color-background-secondary);
+    border: 0.5px solid var(--color-border-tertiary);
+    border-radius: var(--border-radius-md); padding: 1.25rem; margin-bottom: 1rem;
+  }
+  .choice-q-text { font-size: 14px; font-weight: 500; color: var(--color-text-primary); margin-bottom: 0.75rem; }
+  .choice-option {
+    display: flex; align-items: center; gap: 10px;
+    padding: 8px 10px; margin-bottom: 6px; cursor: pointer;
+    border-radius: var(--border-radius-md);
+    border: 0.5px solid var(--color-border-tertiary);
+    font-size: 13px; color: var(--color-text-primary);
+    transition: background 0.15s;
+    background: var(--color-background-primary);
+  }
+  .choice-option:hover { background: var(--color-background-secondary); }
+  .choice-option.selected-wrong { background: #FCEBEB; border-color: #F09595; color: #A32D2D; }
+  .choice-option.selected-correct { background: #f1edfa; border-color: #5DCAA5; color: #582bc2; }
+  .choice-radio {
+    width: 16px; height: 16px; border-radius: 50%; flex-shrink: 0;
+    border: 1.5px solid var(--color-border-secondary);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .choice-radio-fill { width: 8px; height: 8px; border-radius: 50%; background: #805cbf; display: none; }
+  .choice-option.selected-correct .choice-radio-fill,
+  .choice-option.selected-wrong .choice-radio-fill { display: block; }
+  .choice-option.selected-wrong .choice-radio-fill { background: #E24B4A; }
+
+  .summary-card {
+    background: linear-gradient(135deg, #f1edfa 0%, #9FE1CB 100%);
+    border-radius: var(--border-radius-lg); padding: 2rem;
+    text-align: center; margin-bottom: 1.5rem;
+    border: 0.5px solid #5DCAA5;
+  }
+  .summary-icon { font-size: 36px; margin-bottom: 1rem; }
+  .summary-title { font-size: 20px; font-weight: 500; color: #04342C; margin-bottom: 0.5rem; }
+  .summary-text { font-size: 14px; color: #582bc2; line-height: 1.7; }
+  .key-takeaway {
+    background: var(--color-background-secondary);
+    border-radius: var(--border-radius-md); padding: 1.25rem; margin-bottom: 1rem;
+    font-size: 14px; color: var(--color-text-primary); line-height: 1.7;
+    border-left: 3px solid #805cbf; border-radius: 0 var(--border-radius-md) var(--border-radius-md) 0;
+  }
+
+  .btn {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 9px 20px; border-radius: var(--border-radius-md);
+    font-size: 13px; font-weight: 500; cursor: pointer;
+    border: 0.5px solid var(--color-border-secondary);
+    background: var(--color-background-primary); color: var(--color-text-primary);
+    transition: background 0.15s;
+  }
+  .btn:hover { background: var(--color-background-secondary); }
+  .btn-primary {
+    background: #805cbf; color: white; border-color: #805cbf;
+  }
+  .btn-primary:hover { background: #0F6E56; }
+  .btn-group { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; margin-top: 1rem; }
+
+  .feedback-box {
+    display: none; padding: 0.75rem 1rem; border-radius: var(--border-radius-md);
+    font-size: 13px; margin-top: 0.75rem; line-height: 1.5;
+  }
+  .feedback-box.success { background: #f1edfa; color: #582bc2; display: block; }
+  .feedback-box.error { background: #FCEBEB; color: #A32D2D; display: block; }
+
+  .stars-row { display: flex; gap: 4px; margin-bottom: 0.5rem; }
+  .star { width: 16px; height: 16px; fill: #EF9F27; }
+  .completed-badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: #f1edfa; color: #0F6E56;
+    font-size: 12px; font-weight: 500; padding: 5px 12px;
+    border-radius: 20px; margin-top: 8px;
+  }
+
+  @media (max-width: 640px) {
+    .ib-sidebar { width: 56px; min-width: 56px; }
+    .ib-sidebar-header, .ib-nav-item span, .progress-bar-wrap .progress-label,
+    .ib-sidebar-header .module-label, .ib-sidebar-header .module-title { display: none; }
+    .ib-content { padding: 1rem; }
+    .hotspot-img { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+  <div style="padding: 16px;">
+    <div class="page" id="page-5">
+      <div class="page-tag">Desafio rápido · Drag the Words</div>
+      <div class="page-title">Complete as lacunas</div>
+      <div class="page-subtitle">Selecione as palavras corretas do banco de palavras para completar cada frase.</div>
+      <div class="drag-area">
+        <div class="drag-sentence" id="drag-sentence">
+          Pessoas se engajam quando têm <span class="blank" data-answer="objetivo claro" onclick="fillBlank(this)" id="b1">___________</span>, recebem <span class="blank" data-answer="feedback rápido" onclick="fillBlank(this)" id="b2">___________</span> e percebem <span class="blank" data-answer="progresso visível" onclick="fillBlank(this)" id="b3">___________</span>.
+        </div>
+        <div class="word-bank" id="word-bank">
+          <div class="word-chip" data-word="objetivo claro" onclick="selectWord(this)">objetivo claro</div>
+          <div class="word-chip" data-word="recompensas" onclick="selectWord(this)">recompensas</div>
+          <div class="word-chip" data-word="feedback rápido" onclick="selectWord(this)">feedback rápido</div>
+          <div class="word-chip" data-word="motivação externa" onclick="selectWord(this)">motivação externa</div>
+          <div class="word-chip" data-word="progresso visível" onclick="selectWord(this)">progresso visível</div>
+          <div class="word-chip" data-word="competição" onclick="selectWord(this)">competição</div>
+        </div>
+      </div>
+      <div id="drag-feedback" class="feedback-box"></div>
+      <div class="btn-group">
+        <button class="btn" onclick="goTo(4)">Anterior</button>
+        <button class="btn" onclick="resetDrag()">Limpar</button>
+        <button class="btn btn-primary" onclick="checkDrag()">Verificar</button>
+      </div>
+    </div>
+    <p></p>
+    <p></p>
+    <p class="page-continue">Clique no botão > para continuar. (embaixo à direita)</p>
+   </div>
+
+<script>
+const pages = [
+  { label: 'Abertura', tag: 'Imersão' },
+  { label: 'Quebrando crenças', tag: 'Dialog Cards' },
+  { label: 'Conceito essencial', tag: 'Accordion' },
+  { label: 'Por que se engajam', tag: 'Image Hotspots' },
+  { label: 'Desafio rápido', tag: 'Drag the Words' },
+  { label: 'Aplicação prática', tag: 'Essay' },
+  { label: 'Validação', tag: 'Single Choice' },
+  { label: 'Fechamento', tag: 'Summary' },
+];
+
+let currentPage = 1;
+let completedPages = new Set([1]);
+let hsRevealed = [false, false, false];
+let selectedWord = null;
+let blankValues = { b1: null, b2: null, b3: null };
+let choiceAnswers = {};
+
+function buildNav() {
+  const nav = document.getElementById('sidebar-nav');
+  nav.innerHTML = '';
+  pages.forEach((p, i) => {
+    const num = i + 1;
+    const isDone = completedPages.has(num) && num !== currentPage;
+    const isActive = num === currentPage;
+    const el = document.createElement('div');
+    el.className = 'ib-nav-item' + (isActive ? ' active' : '') + (isDone ? ' done' : '');
+    el.innerHTML = `<div class="nav-icon ${isActive ? 'active-icon' : isDone ? 'done-icon' : ''}">
+      ${isDone ? '<svg width="10" height="8" viewBox="0 0 10 8"><path d="M1 4l3 3 5-6" stroke="white" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>' : num}
+    </div><span>${p.label}</span>`;
+    el.onclick = () => goTo(num);
+    nav.appendChild(el);
+  });
+}
+
+function updateProgress() {
+  const pct = Math.round((currentPage / 8) * 100);
+  document.getElementById('prog-fill').style.width = pct + '%';
+  document.getElementById('prog-label').textContent = 'Página ' + currentPage + ' de 8';
+}
+
+function goTo(n) {
+  document.getElementById('page-' + currentPage).classList.remove('visible');
+  currentPage = n;
+  completedPages.add(n);
+  document.getElementById('page-' + n).classList.add('visible');
+  document.getElementById('main-content').scrollTop = 0;
+  buildNav(); updateProgress();
+}
+
+function flipCard(card) {
+  card.classList.toggle('flipped');
+  const front = card.querySelector('.dialog-card-front');
+  if (card.classList.contains('flipped')) {
+    front.querySelector('.flip-hint').textContent = 'clique para fechar';
+  } else {
+    front.querySelector('.flip-hint').textContent = 'clique para ver';
+  }
+}
+
+function checkDialogCards() {
+  const flipped = document.querySelectorAll('#dialog-cards .dialog-card.flipped').length;
+  const fb = document.getElementById('dialog-feedback');
+  if (flipped < 4) {
+    fb.className = 'feedback-box error';
+    fb.textContent = 'Explore todos os cartões antes de continuar — vire cada um deles.';
+  } else {
+    fb.className = 'feedback-box success';
+    fb.textContent = 'Você começou a enxergar além do obvio. Vamos aprofundar o conceito!';
+    setTimeout(() => goTo(3), 800);
+  }
+}
+
+function toggleAcc(header) {
+  const item = header.parentElement;
+  item.classList.toggle('open');
+}
+
+function checkAccordion() {
+  const opened = document.querySelectorAll('#accordion .accordion-item.open').length;
+  const fb = document.getElementById('acc-feedback');
+  if (opened < 4) {
+    fb.className = 'feedback-box error';
+    fb.textContent = 'Abra todas as seções para garantir que nenhum conceito fique de fora.';
+  } else {
+    fb.className = 'feedback-box success';
+    fb.textContent = 'Conceito absorvido! Agora vamos ver por que as pessoas realmente se engajam.';
+    setTimeout(() => goTo(4), 800);
+  }
+}
+
+function revealHotspot(cell, idx) {
+  cell.classList.add('revealed');
+  hsRevealed[idx] = true;
+  const revealed = hsRevealed.filter(Boolean).length;
+  const fb = document.getElementById('hs-feedback');
+  if (revealed === 3) {
+    fb.className = 'feedback-box success';
+    fb.textContent = 'Isso é o que faz alguém continuar. Sempre. Guarde esses três princípios.';
+  }
+}
+
+function checkHotspots() {
+  const revealed = hsRevealed.filter(Boolean).length;
+  const fb = document.getElementById('hs-feedback');
+  if (revealed < 3) {
+    fb.className = 'feedback-box error';
+    fb.textContent = 'Clique nos três elementos para revelar os princípios do engajamento.';
+  } else {
+    goTo(5);
+  }
+}
+
+function selectWord(chip) {
+  document.querySelectorAll('.word-chip').forEach(c => c.style.outline = 'none');
+  if (selectedWord === chip) { selectedWord = null; return; }
+  selectedWord = chip;
+  chip.style.outline = '2px solid #805cbf';
+}
+
+function fillBlank(blank) {
+  if (!selectedWord || selectedWord.classList.contains('used')) return;
+  const oldVal = blankValues[blank.id];
+  if (oldVal) {
+    document.querySelectorAll('.word-chip').forEach(c => {
+      if (c.dataset.word === oldVal) { c.classList.remove('used', 'correct-used'); }
+    });
+  }
+  blankValues[blank.id] = selectedWord.dataset.word;
+  blank.textContent = selectedWord.dataset.word;
+  blank.classList.add('filled');
+  selectedWord.classList.add('used', 'correct-used');
+  selectedWord.style.outline = 'none';
+  selectedWord = null;
+}
+
+function resetDrag() {
+  blankValues = { b1: null, b2: null, b3: null };
+  selectedWord = null;
+  ['b1','b2','b3'].forEach(id => {
+    const b = document.getElementById(id);
+    b.textContent = '___________';
+    b.classList.remove('filled');
+  });
+  document.querySelectorAll('.word-chip').forEach(c => {
+    c.classList.remove('used', 'correct-used');
+    c.style.outline = 'none';
+  });
+  document.getElementById('drag-feedback').className = 'feedback-box';
+}
+
+function checkDrag() {
+  const answers = { b1: 'objetivo claro', b2: 'feedback rápido', b3: 'progresso visível' };
+  const fb = document.getElementById('drag-feedback');
+  const allFilled = blankValues.b1 && blankValues.b2 && blankValues.b3;
+  if (!allFilled) {
+    fb.className = 'feedback-box error';
+    fb.textContent = 'Preencha todas as lacunas antes de verificar.';
+    return;
+  }
+  const correct = Object.keys(answers).every(k => blankValues[k] === answers[k]);
+  if (correct) {
+    fb.className = 'feedback-box success';
+    fb.textContent = 'Você identificou os 3 motores do engajamento. Excelente!';
+    setTimeout(() => goTo(6), 800);
+  } else {
+    fb.className = 'feedback-box error';
+    fb.textContent = 'Alguma resposta está incorreta. Tente novamente — a evolução faz parte do processo.';
+    setTimeout(resetDrag, 1500);
+  }
+}
+
+function checkEssay() {
+  const val = document.getElementById('essay-input').value.trim();
+  const fb = document.getElementById('essay-feedback');
+  if (val.length < 20) {
+    fb.className = 'feedback-box error';
+    fb.textContent = 'Escreva uma reflexão mais elaborada — é aqui que começa a transformação.';
+    return;
+  }
+  fb.className = 'feedback-box success';
+  fb.textContent = 'Reflexão salva! Você deu um passo fundamental: conectou o aprendizado à sua realidade.';
+  setTimeout(() => goTo(7), 900);
+}
+
+function selectChoice(option, qId, isCorrect) {
+  const container = option.closest('.choice-question');
+  container.querySelectorAll('.choice-option').forEach(o => {
+    o.classList.remove('selected-correct', 'selected-wrong');
+  });
+  option.classList.add(isCorrect ? 'selected-correct' : 'selected-wrong');
+  choiceAnswers[qId] = isCorrect;
+}
+
+function checkChoices() {
+  const fb = document.getElementById('choice-feedback');
+  const q1 = choiceAnswers['q1'], q2 = choiceAnswers['q2'];
+  if (q1 === undefined || q2 === undefined) {
+    fb.className = 'feedback-box error';
+    fb.textContent = 'Responda as duas perguntas antes de continuar.';
+    return;
+  }
+  if (q1 && q2) {
+    fb.className = 'feedback-box success';
+    fb.textContent = 'Missão concluída! Você demonstrou compreensão do conceito central desta aula.';
+    setTimeout(() => goTo(8), 900);
+  } else {
+    fb.className = 'feedback-box error';
+    fb.textContent = 'Reveja suas respostas. Releia a definição de gamificação na página 3 e tente novamente.';
+  }
+}
+
+buildNav();
+updateProgress();
+</script>
+</body>
+</html>
