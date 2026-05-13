@@ -35,7 +35,7 @@
     height: 4px; border-radius: 2px; background: var(--color-border-tertiary); overflow: hidden;
   }
   .progress-bar-fill {
-    height: 100%; border-radius: 2px; background: #7b34fe;
+    height: 100%; border-radius: 2px; background: #805cbf;
     transition: width 0.4s ease;
   }
   .progress-label { font-size: 11px; color: var(--color-text-tertiary); margin-top: 4px; }
@@ -51,7 +51,7 @@
   .ib-nav-item:hover { background: var(--color-background-primary); }
   .ib-nav-item.active {
     color: var(--color-text-primary); font-weight: 500;
-    border-left-color: #7b34fe;
+    border-left-color: #805cbf;
     background: var(--color-background-primary);
   }
   .ib-nav-item.done { color: var(--color-text-secondary); }
@@ -61,8 +61,8 @@
     font-size: 10px; font-weight: 500;
     background: var(--color-border-tertiary); color: var(--color-text-tertiary);
   }
-  .nav-icon.done-icon { background: #7b34fe; color: white; }
-  .nav-icon.active-icon { background: #7b34fe; color: white; }
+  .nav-icon.done-icon { background: #805cbf; color: white; }
+  .nav-icon.active-icon { background: #805cbf; color: white; }
 
   .ib-content {
     flex: 1; overflow-y: auto; padding: 2rem 2.5rem;
@@ -93,7 +93,7 @@
     font-size: 12px; font-weight: 500; padding: 4px 10px;
     border-radius: 20px; margin-bottom: 1.5rem;
   }
-  .status-dot { width: 6px; height: 6px; border-radius: 50%; background: #7b34fe; }
+  .status-dot { width: 6px; height: 6px; border-radius: 50%; background: #805cbf; }
 
   .intro-card {
     background: var(--color-background-secondary);
@@ -103,9 +103,9 @@
     font-size: 15px; color: var(--color-text-primary); line-height: 1.7;
   }
   .highlight-box {
-    border-left: 3px solid #7b34fe; padding: 0.75rem 1rem;
+    border-left: 3px solid #805cbf; padding: 0.75rem 1rem;
     background: #aa9bcf; border-radius: 0 var(--border-radius-md) var(--border-radius-md) 0;
-    color: #085041; font-size: 14px; margin: 1rem 0; line-height: 1.6;
+    color: #582bc2; font-size: 14px; margin: 1rem 0; line-height: 1.6;
   }
 
   .dialog-cards-container { display: flex; flex-direction: column; gap: 1rem; margin-bottom: 1.5rem; }
@@ -178,7 +178,7 @@
   .hotspot-icon { font-size: 28px; margin-bottom: 8px; }
   .hotspot-label { font-size: 13px; font-weight: 500; color: var(--color-text-primary); }
   .hotspot-desc {
-    display: none; font-size: 12px; color: #085041; margin-top: 6px; line-height: 1.5;
+    display: none; font-size: 12px; color: #582bc2; margin-top: 6px; line-height: 1.5;
   }
   .hotspot-cell.revealed .hotspot-desc { display: block; }
   .hotspot-instruction { font-size: 12px; color: var(--color-text-tertiary); margin-bottom: 8px; }
@@ -191,11 +191,11 @@
     font-size: 15px; line-height: 2.2; margin-bottom: 1rem; color: var(--color-text-primary);
   }
   .blank {
-    display: inline-block; min-width: 130px; border-bottom: 2px solid #7b34fe;
+    display: inline-block; min-width: 130px; border-bottom: 2px solid #805cbf;
     padding: 2px 4px; margin: 0 4px; cursor: pointer; text-align: center;
     font-size: 13px; color: var(--color-text-tertiary); vertical-align: middle;
   }
-  .blank.filled { color: #085041; font-weight: 500; }
+  .blank.filled { color: #582bc2; font-weight: 500; }
   .word-bank {
     display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 1rem;
   }
@@ -208,7 +208,7 @@
   }
   .word-chip:hover { background: var(--color-background-secondary); }
   .word-chip.used { opacity: 0.35; pointer-events: none; }
-  .word-chip.correct-used { background: #aa9bcf; color: #085041; border-color: #5DCAA5; opacity: 0.6; }
+  .word-chip.correct-used { background: #aa9bcf; color: #582bc2; border-color: #5DCAA5; opacity: 0.6; }
 
   .essay-area { margin-bottom: 1.5rem; }
   .essay-question {
@@ -220,7 +220,7 @@
   .essay-prompts { list-style: none; padding: 0; }
   .essay-prompts li {
     padding: 4px 0 4px 1rem;
-    border-left: 2px solid #7b34fe;
+    border-left: 2px solid #805cbf;
     margin-bottom: 6px; font-size: 13px; color: var(--color-text-secondary);
   }
   textarea {
@@ -231,7 +231,7 @@
     resize: vertical; background: var(--color-background-primary);
     color: var(--color-text-primary);
   }
-  textarea:focus { outline: none; border-color: #7b34fe; }
+  textarea:focus { outline: none; border-color: #805cbf; }
 
   .choice-set { margin-bottom: 1.5rem; }
   .choice-question {
@@ -251,13 +251,13 @@
   }
   .choice-option:hover { background: var(--color-background-secondary); }
   .choice-option.selected-wrong { background: #FCEBEB; border-color: #F09595; color: #A32D2D; }
-  .choice-option.selected-correct { background: #aa9bcf; border-color: #5DCAA5; color: #085041; }
+  .choice-option.selected-correct { background: #aa9bcf; border-color: #5DCAA5; color: #582bc2; }
   .choice-radio {
     width: 16px; height: 16px; border-radius: 50%; flex-shrink: 0;
     border: 1.5px solid var(--color-border-secondary);
     display: flex; align-items: center; justify-content: center;
   }
-  .choice-radio-fill { width: 8px; height: 8px; border-radius: 50%; background: #7b34fe; display: none; }
+  .choice-radio-fill { width: 8px; height: 8px; border-radius: 50%; background: #805cbf; display: none; }
   .choice-option.selected-correct .choice-radio-fill,
   .choice-option.selected-wrong .choice-radio-fill { display: block; }
   .choice-option.selected-wrong .choice-radio-fill { background: #E24B4A; }
@@ -270,12 +270,12 @@
   }
   .summary-icon { font-size: 36px; margin-bottom: 1rem; }
   .summary-title { font-size: 20px; font-weight: 500; color: #04342C; margin-bottom: 0.5rem; }
-  .summary-text { font-size: 14px; color: #085041; line-height: 1.7; }
+  .summary-text { font-size: 14px; color: #582bc2; line-height: 1.7; }
   .key-takeaway {
     background: var(--color-background-secondary);
     border-radius: var(--border-radius-md); padding: 1.25rem; margin-bottom: 1rem;
     font-size: 14px; color: var(--color-text-primary); line-height: 1.7;
-    border-left: 3px solid #7b34fe; border-radius: 0 var(--border-radius-md) var(--border-radius-md) 0;
+    border-left: 3px solid #805cbf; border-radius: 0 var(--border-radius-md) var(--border-radius-md) 0;
   }
 
   .btn {
@@ -288,7 +288,7 @@
   }
   .btn:hover { background: var(--color-background-secondary); }
   .btn-primary {
-    background: #7b34fe; color: white; border-color: #7b34fe;
+    background: #805cbf; color: white; border-color: #805cbf;
   }
   .btn-primary:hover { background: #0F6E56; }
   .btn-group { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; margin-top: 1rem; }
@@ -297,7 +297,7 @@
     display: none; padding: 0.75rem 1rem; border-radius: var(--border-radius-md);
     font-size: 13px; margin-top: 0.75rem; line-height: 1.5;
   }
-  .feedback-box.success { background: #aa9bcf; color: #085041; display: block; }
+  .feedback-box.success { background: #aa9bcf; color: #582bc2; display: block; }
   .feedback-box.error { background: #FCEBEB; color: #A32D2D; display: block; }
 
   .stars-row { display: flex; gap: 4px; margin-bottom: 0.5rem; }
@@ -575,19 +575,19 @@
         <div style="font-size: 13px; font-weight: 500; color: var(--color-text-primary); margin-bottom: 0.75rem;">Você aprendeu nesta aula:</div>
         <div style="display:flex;flex-direction:column;gap:8px;">
           <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--color-text-secondary);">
-            <div style="width:18px;height:18px;border-radius:50%;background:#7b34fe;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <div style="width:18px;height:18px;border-radius:50%;background:#805cbf;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
               <svg width="10" height="8" viewBox="0 0 10 8"><path d="M1 4l3 3 5-6" stroke="white" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </div>
             O que gamificação realmente é — e o que não é
           </div>
           <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--color-text-secondary);">
-            <div style="width:18px;height:18px;border-radius:50%;background:#7b34fe;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <div style="width:18px;height:18px;border-radius:50%;background:#805cbf;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
               <svg width="10" height="8" viewBox="0 0 10 8"><path d="M1 4l3 3 5-6" stroke="white" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </div>
             Por que as pessoas se engajam nos jogos
           </div>
           <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--color-text-secondary);">
-            <div style="width:18px;height:18px;border-radius:50%;background:#7b34fe;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <div style="width:18px;height:18px;border-radius:50%;background:#805cbf;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
               <svg width="10" height="8" viewBox="0 0 10 8"><path d="M1 4l3 3 5-6" stroke="white" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </div>
             Os 3 motores do engajamento: objetivo claro, feedback rápido, progresso visível
@@ -722,7 +722,7 @@ function selectWord(chip) {
   document.querySelectorAll('.word-chip').forEach(c => c.style.outline = 'none');
   if (selectedWord === chip) { selectedWord = null; return; }
   selectedWord = chip;
-  chip.style.outline = '2px solid #7b34fe';
+  chip.style.outline = '2px solid #805cbf';
 }
 
 function fillBlank(blank) {
