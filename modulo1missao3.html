@@ -18,6 +18,7 @@
     --border-radius-md: 4px;
     --border-radius-lg: 8px;
     --font-sans: Arial, sans-serif;}
+  
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body { font-family: var(--font-sans, sans-serif); }
 
@@ -87,18 +88,22 @@
     background: var(--color-background-primary);
   }
 
-  .page { display: none; }
+  .page { display: block; }
   .page.visible { display: block; }
 
   .page-tag {
-    font-size: 11px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase;
+    font-size: 14px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase;
     color: var(--color-text-tertiary); margin-bottom: 8px;
   }
   .page-title {
-    font-size: 22px; font-weight: 500; color: var(--color-text-primary);
+    font-size: 22px; font-weight: 500; color: var(--color-text-title);
     line-height: 1.3; margin-bottom: 0.5rem;
   }
+  
   .page-subtitle {
+    font-size: 15px; color: var(--color-text-secondary); margin-bottom: 1.5rem; line-height: 1.6;
+  }
+  .page-continue {
     font-size: 15px; color: var(--color-text-secondary); margin-bottom: 1.5rem; line-height: 1.6;
   }
   .divider {
@@ -339,7 +344,7 @@
 <body>
 
   <div style="padding: 16px;">
-   <div class="page.visible" id="page-3">
+    <div class="page" id="page-3">
       <div class="page-tag">Conceito essencial · Accordion</div>
       <div class="page-title">O que é gamificação — de verdade</div>
       <div class="page-subtitle">Explore cada seção para revelar o conceito completo.</div>
@@ -387,7 +392,10 @@
         <button class="btn btn-primary" onclick="checkAccordion()">Continuar</button>
       </div>
     </div>
-    <p class="hotspot-instruction">Clique no botão > para continuar.</p>
+    </div>
+    <p></p>
+    <p></p>
+    <p class="page-continue">Clique no botão > para continuar. (embaixo à direita)</p>
    </div>
 
 <script>
