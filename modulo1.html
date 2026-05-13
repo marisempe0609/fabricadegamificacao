@@ -1,4 +1,3 @@
-
 <style>
   :root { --pg: 0; }
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -36,7 +35,7 @@
     height: 4px; border-radius: 2px; background: var(--color-border-tertiary); overflow: hidden;
   }
   .progress-bar-fill {
-    height: 100%; border-radius: 2px; background: #1D9E75;
+    height: 100%; border-radius: 2px; background: #7b34fe;
     transition: width 0.4s ease;
   }
   .progress-label { font-size: 11px; color: var(--color-text-tertiary); margin-top: 4px; }
@@ -52,7 +51,7 @@
   .ib-nav-item:hover { background: var(--color-background-primary); }
   .ib-nav-item.active {
     color: var(--color-text-primary); font-weight: 500;
-    border-left-color: #1D9E75;
+    border-left-color: #7b34fe;
     background: var(--color-background-primary);
   }
   .ib-nav-item.done { color: var(--color-text-secondary); }
@@ -62,8 +61,8 @@
     font-size: 10px; font-weight: 500;
     background: var(--color-border-tertiary); color: var(--color-text-tertiary);
   }
-  .nav-icon.done-icon { background: #1D9E75; color: white; }
-  .nav-icon.active-icon { background: #1D9E75; color: white; }
+  .nav-icon.done-icon { background: #7b34fe; color: white; }
+  .nav-icon.active-icon { background: #7b34fe; color: white; }
 
   .ib-content {
     flex: 1; overflow-y: auto; padding: 2rem 2.5rem;
@@ -90,11 +89,11 @@
 
   .status-pill {
     display: inline-flex; align-items: center; gap: 6px;
-    background: #pb8b2eb; color: #241c8c;
+    background: #pb8b2eb; color: #0F6E56;
     font-size: 12px; font-weight: 500; padding: 4px 10px;
     border-radius: 20px; margin-bottom: 1.5rem;
   }
-  .status-dot { width: 6px; height: 6px; border-radius: 50%; background: #241c8c; }
+  .status-dot { width: 6px; height: 6px; border-radius: 50%; background: #7b34fe; }
 
   .intro-card {
     background: var(--color-background-secondary);
@@ -106,7 +105,7 @@
   .highlight-box {
     border-left: 3px solid #7b34fe; padding: 0.75rem 1rem;
     background: #pb8b2eb; border-radius: 0 var(--border-radius-md) var(--border-radius-md) 0;
-    color: #241c8cp; font-size: 14px; margin: 1rem 0; line-height: 1.6;
+    color: #085041; font-size: 14px; margin: 1rem 0; line-height: 1.6;
   }
 
   .dialog-cards-container { display: flex; flex-direction: column; gap: 1rem; margin-bottom: 1.5rem; }
@@ -136,7 +135,7 @@
   }
   .tag-no { background: #FCEBEB; color: #A32D2D; }
   .tag-caution { background: #FAEEDA; color: #854F0B; }
-  .tag-target { background: #E1F5EE; color: #0F6E56; }
+  .tag-target { background: #pb8b2eb; color: #0F6E56; }
 
   .accordion-container { margin-bottom: 1.5rem; }
   .accordion-item {
@@ -175,7 +174,7 @@
     transition: background 0.2s;
   }
   .hotspot-cell:hover { background: var(--color-background-primary); }
-  .hotspot-cell.revealed { background: #E1F5EE; }
+  .hotspot-cell.revealed { background: #pb8b2eb; }
   .hotspot-icon { font-size: 28px; margin-bottom: 8px; }
   .hotspot-label { font-size: 13px; font-weight: 500; color: var(--color-text-primary); }
   .hotspot-desc {
@@ -192,7 +191,7 @@
     font-size: 15px; line-height: 2.2; margin-bottom: 1rem; color: var(--color-text-primary);
   }
   .blank {
-    display: inline-block; min-width: 130px; border-bottom: 2px solid #1D9E75;
+    display: inline-block; min-width: 130px; border-bottom: 2px solid #7b34fe;
     padding: 2px 4px; margin: 0 4px; cursor: pointer; text-align: center;
     font-size: 13px; color: var(--color-text-tertiary); vertical-align: middle;
   }
@@ -209,7 +208,7 @@
   }
   .word-chip:hover { background: var(--color-background-secondary); }
   .word-chip.used { opacity: 0.35; pointer-events: none; }
-  .word-chip.correct-used { background: #E1F5EE; color: #085041; border-color: #5DCAA5; opacity: 0.6; }
+  .word-chip.correct-used { background: #pb8b2eb; color: #085041; border-color: #5DCAA5; opacity: 0.6; }
 
   .essay-area { margin-bottom: 1.5rem; }
   .essay-question {
@@ -221,7 +220,7 @@
   .essay-prompts { list-style: none; padding: 0; }
   .essay-prompts li {
     padding: 4px 0 4px 1rem;
-    border-left: 2px solid #1D9E75;
+    border-left: 2px solid #7b34fe;
     margin-bottom: 6px; font-size: 13px; color: var(--color-text-secondary);
   }
   textarea {
@@ -232,7 +231,7 @@
     resize: vertical; background: var(--color-background-primary);
     color: var(--color-text-primary);
   }
-  textarea:focus { outline: none; border-color: #1D9E75; }
+  textarea:focus { outline: none; border-color: #7b34fe; }
 
   .choice-set { margin-bottom: 1.5rem; }
   .choice-question {
@@ -252,19 +251,19 @@
   }
   .choice-option:hover { background: var(--color-background-secondary); }
   .choice-option.selected-wrong { background: #FCEBEB; border-color: #F09595; color: #A32D2D; }
-  .choice-option.selected-correct { background: #E1F5EE; border-color: #5DCAA5; color: #085041; }
+  .choice-option.selected-correct { background: #pb8b2eb; border-color: #5DCAA5; color: #085041; }
   .choice-radio {
     width: 16px; height: 16px; border-radius: 50%; flex-shrink: 0;
     border: 1.5px solid var(--color-border-secondary);
     display: flex; align-items: center; justify-content: center;
   }
-  .choice-radio-fill { width: 8px; height: 8px; border-radius: 50%; background: #1D9E75; display: none; }
+  .choice-radio-fill { width: 8px; height: 8px; border-radius: 50%; background: #7b34fe; display: none; }
   .choice-option.selected-correct .choice-radio-fill,
   .choice-option.selected-wrong .choice-radio-fill { display: block; }
   .choice-option.selected-wrong .choice-radio-fill { background: #E24B4A; }
 
   .summary-card {
-    background: linear-gradient(135deg, #E1F5EE 0%, #9FE1CB 100%);
+    background: linear-gradient(135deg, #pb8b2eb 0%, #9FE1CB 100%);
     border-radius: var(--border-radius-lg); padding: 2rem;
     text-align: center; margin-bottom: 1.5rem;
     border: 0.5px solid #5DCAA5;
@@ -276,7 +275,7 @@
     background: var(--color-background-secondary);
     border-radius: var(--border-radius-md); padding: 1.25rem; margin-bottom: 1rem;
     font-size: 14px; color: var(--color-text-primary); line-height: 1.7;
-    border-left: 3px solid #1D9E75; border-radius: 0 var(--border-radius-md) var(--border-radius-md) 0;
+    border-left: 3px solid #7b34fe; border-radius: 0 var(--border-radius-md) var(--border-radius-md) 0;
   }
 
   .btn {
@@ -289,7 +288,7 @@
   }
   .btn:hover { background: var(--color-background-secondary); }
   .btn-primary {
-    background: #1D9E75; color: white; border-color: #1D9E75;
+    background: #7b34fe; color: white; border-color: #7b34fe;
   }
   .btn-primary:hover { background: #0F6E56; }
   .btn-group { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; margin-top: 1rem; }
@@ -298,14 +297,14 @@
     display: none; padding: 0.75rem 1rem; border-radius: var(--border-radius-md);
     font-size: 13px; margin-top: 0.75rem; line-height: 1.5;
   }
-  .feedback-box.success { background: #E1F5EE; color: #085041; display: block; }
+  .feedback-box.success { background: #pb8b2eb; color: #085041; display: block; }
   .feedback-box.error { background: #FCEBEB; color: #A32D2D; display: block; }
 
   .stars-row { display: flex; gap: 4px; margin-bottom: 0.5rem; }
   .star { width: 16px; height: 16px; fill: #EF9F27; }
   .completed-badge {
     display: inline-flex; align-items: center; gap: 6px;
-    background: #E1F5EE; color: #0F6E56;
+    background: #pb8b2eb; color: #0F6E56;
     font-size: 12px; font-weight: 500; padding: 5px 12px;
     border-radius: 20px; margin-top: 8px;
   }
@@ -576,19 +575,19 @@
         <div style="font-size: 13px; font-weight: 500; color: var(--color-text-primary); margin-bottom: 0.75rem;">Você aprendeu nesta aula:</div>
         <div style="display:flex;flex-direction:column;gap:8px;">
           <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--color-text-secondary);">
-            <div style="width:18px;height:18px;border-radius:50%;background:#1D9E75;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <div style="width:18px;height:18px;border-radius:50%;background:#7b34fe;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
               <svg width="10" height="8" viewBox="0 0 10 8"><path d="M1 4l3 3 5-6" stroke="white" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </div>
             O que gamificação realmente é — e o que não é
           </div>
           <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--color-text-secondary);">
-            <div style="width:18px;height:18px;border-radius:50%;background:#1D9E75;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <div style="width:18px;height:18px;border-radius:50%;background:#7b34fe;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
               <svg width="10" height="8" viewBox="0 0 10 8"><path d="M1 4l3 3 5-6" stroke="white" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </div>
             Por que as pessoas se engajam nos jogos
           </div>
           <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--color-text-secondary);">
-            <div style="width:18px;height:18px;border-radius:50%;background:#1D9E75;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <div style="width:18px;height:18px;border-radius:50%;background:#7b34fe;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
               <svg width="10" height="8" viewBox="0 0 10 8"><path d="M1 4l3 3 5-6" stroke="white" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </div>
             Os 3 motores do engajamento: objetivo claro, feedback rápido, progresso visível
@@ -723,7 +722,7 @@ function selectWord(chip) {
   document.querySelectorAll('.word-chip').forEach(c => c.style.outline = 'none');
   if (selectedWord === chip) { selectedWord = null; return; }
   selectedWord = chip;
-  chip.style.outline = '2px solid #1D9E75';
+  chip.style.outline = '2px solid #7b34fe';
 }
 
 function fillBlank(blank) {
