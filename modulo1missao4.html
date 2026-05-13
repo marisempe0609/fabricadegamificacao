@@ -18,6 +18,7 @@
     --border-radius-md: 4px;
     --border-radius-lg: 8px;
     --font-sans: Arial, sans-serif;}
+  
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body { font-family: var(--font-sans, sans-serif); }
 
@@ -91,14 +92,18 @@
   .page.visible { display: block; }
 
   .page-tag {
-    font-size: 11px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase;
+    font-size: 14px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase;
     color: var(--color-text-tertiary); margin-bottom: 8px;
   }
   .page-title {
-    font-size: 22px; font-weight: 500; color: var(--color-text-primary);
+    font-size: 22px; font-weight: 500; color: var(--color-text-title);
     line-height: 1.3; margin-bottom: 0.5rem;
   }
+  
   .page-subtitle {
+    font-size: 15px; color: var(--color-text-secondary); margin-bottom: 1.5rem; line-height: 1.6;
+  }
+  .page-continue {
     font-size: 15px; color: var(--color-text-secondary); margin-bottom: 1.5rem; line-height: 1.6;
   }
   .divider {
@@ -343,7 +348,7 @@
       <div class="page-tag">Por que as pessoas se engajam · Image Hotspots</div>
       <div class="page-title">Clique em cada elemento para descobrir</div>
       <div class="page-subtitle">Três princípios que movem o engajamento em qualquer contexto.</div>
-      <p class="hotspot-instruction">Clique nos quadros pontos abaixo para revelar o que realmente engaja as pessoas.</p>
+      <p class="hotspot-instruction">Clique nos três pontos abaixo para revelar o que realmente engaja as pessoas.</p>
       <div class="hotspot-wrapper">
         <div class="hotspot-img">
           <div class="hotspot-cell" onclick="revealHotspot(this, 0)" id="hs0">
@@ -364,10 +369,15 @@
         </div>
       </div>
       <div id="hs-feedback" class="feedback-box"></div>
+      <div class="btn-group">
+        <button class="btn" onclick="goTo(3)">Anterior</button>
+        <button class="btn btn-primary" onclick="checkHotspots()">Continuar</button>
       </div>
     </div>
-    <p class="hotspot-instruction">Clique no botão > para continuar.</p>
-  </div>
+    <p></p>
+    <p></p>
+    <p class="page-continue">Clique no botão > para continuar. (embaixo à direita)</p>
+   </div>
 
 <script>
 const pages = [
