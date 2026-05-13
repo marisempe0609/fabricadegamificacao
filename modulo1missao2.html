@@ -1,10 +1,16 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fábrica de Gamificação - Módulo 1</title>
 <style>
   :root { --pg: 0; }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body { font-family: var(--font-sans, sans-serif); }
 
   .ib-shell {
-    display: flex; min-height: 600px; font-size: 15px; 
+    display: flex; min-height: 600px; font-size: 15px;
     border: 0.5px solid var(--color-border-tertiary);
     border-radius: var(--border-radius-lg);
     overflow: hidden;
@@ -317,10 +323,11 @@
     .hotspot-img { grid-template-columns: 1fr; }
   }
 </style>
-
+</head>
+<body>
 
   <div style="padding: 16px;">
-   <div class="page" id="page-2">
+    <div class="page" id="page-2">
       <div class="page-tag">Quebrando crenças · Dialog Cards</div>
       <div class="page-title">Clique para virar cada cartão</div>
       <div class="page-subtitle">Descubra o que realmente está por trás de cada crença sobre gamificação.</div>
@@ -360,9 +367,7 @@
         <button class="btn btn-primary" onclick="checkDialogCards()">Confirmar e continuar</button>
       </div>
     </div>
-   </div>
-
-
+  </div>
 
 <script>
 const pages = [
@@ -580,3 +585,5 @@ function checkChoices() {
 buildNav();
 updateProgress();
 </script>
+</body>
+</html>
