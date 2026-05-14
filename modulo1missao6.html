@@ -517,7 +517,7 @@ function resetDrag() {
   selectedWord = null;
   ['b1','b2','b3'].forEach(id => {
     const b = document.getElementById(id);
-    b.textContent = '___________';
+    b.textContent = '';
     b.classList.remove('filled');
   });
   document.querySelectorAll('.word-chip').forEach(c => {
